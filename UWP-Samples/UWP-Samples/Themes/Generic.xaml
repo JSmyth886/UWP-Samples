@@ -1,0 +1,40 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:UWP_Samples"
+                    xmlns:local3="using:UWP_Samples.Controls.CardView">
+
+  <Style TargetType="local3:CardView">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local3:CardView">
+          <Grid Background="Red"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title}"
+                       TextWrapping="Wrap" />
+            <TextBlock Grid.Row="1"
+                       Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Description}"
+                       TextWrapping="Wrap" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style TargetType="local3:CardPanel">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local3:CardPanel">
+          <Grid Background="{TemplateBinding Background}">
+            <local3:CardViewCanvas x:Name="CardViewCanvas"/>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>
