@@ -1,6 +1,8 @@
 ﻿using Windows.UI.Xaml.Controls;
 using Caliburn.Micro;
 using UWP_Samples.Messages;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace UWP_Samples.ViewModels
 {
@@ -19,7 +21,7 @@ namespace UWP_Samples.ViewModels
 
     protected override void OnActivate()
     {
-      _eventAggregator.Subscribe(this);
+      _eventAggregator.SubscribeOnPublishedThread(this);
     }
 
     protected override void OnDeactivate(bool close)
@@ -44,14 +46,21 @@ namespace UWP_Samples.ViewModels
       _navigationService.For<AdaptiveViewModel>().Navigate();
     }
 
-    public void Handle(SuspendStateMessage message)
+    public void ShowJSON()
     {
-      _navigationService.SuspendState();
+      _navigationService.For<JSONViewModel>().Navigate();
     }
 
-    public void Handle(ResumeStateMessage message)
+        public Task HandleAsync(ResumeStateMessage message, CancellationToken cancellationToken)
     {
       _resume = true;
+      return Task.CompletedTask;
+    }
+
+    public Task HandleAsync(SuspendStateMessage message, CancellationToken cancellationToken)
+    {
+      _navigationService.SuspendState();
+      return Task.CompletedTask;
     }
   }
 }

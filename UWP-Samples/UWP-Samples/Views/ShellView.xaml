@@ -17,14 +17,21 @@
                   Width="50"
                   Height="50">
             <Button.Content>
-              <FontIcon Glyph="&#xECA5;"></FontIcon>
+              <FontIcon Glyph="&#xECA5;"/>
+            </Button.Content>
+          </Button>
+          <Button x:Name="ShowJSON"
+                  Width="50"
+                  Height="50">
+            <Button.Content>
+              <SymbolIcon Symbol="Emoji" />
             </Button.Content>
           </Button>
           <Button x:Name="ShowEmpty"
                   Width="50"
                   Height="50">
             <Button.Content>
-              <SymbolIcon Symbol="ClearSelection"></SymbolIcon>
+              <SymbolIcon Symbol="ClearSelection"/>
             </Button.Content>
           </Button>
         </StackPanel>
